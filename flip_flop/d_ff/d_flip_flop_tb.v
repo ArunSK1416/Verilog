@@ -13,7 +13,14 @@ clk = 0;
 d = 0;
 #10 d = 0 ;
 #10 d = 1;
+#10 d = 0;
+#10 d = 1 ;
+#10 d = 0;
 #10 d = 1;
+#10 d = 0 ;
+#10 d = 1;
+#10 d = 1;
+
 #10 $finish;
 $monitor("time = %0t || clk = %b || d = %b || q = %b",$time,clk,d,q);
 end
