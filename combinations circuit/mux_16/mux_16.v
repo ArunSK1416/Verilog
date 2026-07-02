@@ -1,34 +1,34 @@
-//mux4:1
-module multiplex(i0,i1,i2,i3,y,s1,s2);
-input i0,i1,i2,i3;
-output y;
-input wire s1,s2;
-assign y = ((~s1&~s2&i0)|(~s1&s2&i1)|(s1&~s2&i2)|(s1&s2&i3));
+`timescale 1ns / 1ps
+
+module mux_16(
+    input i0,i1,i2,i3,
+    input i4,i5,i6,i7,
+    input i8,i9,i10,i11,
+    input i12,i13,i14,i15,
+    input s3,s2,s1,s0,
+    output reg y
+);
+
+always @(*) begin
+    case ({s3,s2,s1,s0})
+        4'b0000: y = i0;
+        4'b0001: y = i1;
+        4'b0010: y = i2;
+        4'b0011: y = i3;
+        4'b0100: y = i4;
+        4'b0101: y = i5;
+        4'b0110: y = i6;
+        4'b0111: y = i7;
+        4'b1000: y = i8;
+        4'b1001: y = i9;
+        4'b1010: y = i10;
+        4'b1011: y = i11;
+        4'b1100: y = i12;
+        4'b1101: y = i13;
+        4'b1110: y = i14;
+        4'b1111: y = i15;
+        default: y = 1'b0;
+    endcase
+end
+
 endmodule
-
-//mux2:1
-module mux_21(a,b,s,z);
-input a,b;
-input wire s;
-output z;
-assign z = ((~s&a)|(s&b));
-endmodule
-
-//mux16:1
-module multiplex12(k0,k1,k2,k3,k4,k5,k6,k7,k8,k9,k10,k11,k12,k13,k14,k15,x,s0,s1,s2,s3);
-input wire k0,k1,k2,k3,k4,k5,k6,k7,k8,k9,k10,k11,k12,k13,k14,k15;
-output x;
-input wire s0,s1,s2,s3;
-
-wire q,w,e,r,t,u;
-
-multiplex m1(.i0(k0),.i1(k1),.i2(k2),.i3(k3),.y(q),.s1(s0),.s2(s1));
-multiplex m2(.i0(k4),.i1(k5),.i2(k6),.i3(k7),.y(w),.s1(s0),.s2(s1));
-multiplex m3(.i0(k8),.i1(k9),.i2(k10),.i3(k11),.y(e),.s1(s0),.s2(s1));
-multiplex m4(.i0(k12),.i1(k13),.i2(k14),.i3(k15),.y(r),.s1(s0),.s2(s1));
-
-mux_21 m5(.a(q),.b(w),.s(s2),.z(t));
-mux_21 m6(.a(e),.b(r),.s(s2),.z(u));
-mux_21 m7(.a(t),.b(u),.s(s3),.z(x));
-endmodule
-
