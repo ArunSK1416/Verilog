@@ -1,12 +1,12 @@
 `timescale 1ns / 1ps
 
-module mux4to1_tb;
+module mux_tb;
 
 reg i0, i1, i2, i3;
 reg s1, s0;
 wire y;
 
-mux4to1 uut (.i0(i0),.i1(i1),.i2(i2),.i3(i3),.s1(s1),.s0(s0),.y(y));
+mux_4 uut (.i0(i0),.i1(i1),.i2(i2),.i3(i3),.s1(s1),.s0(s0),.y(y));
 
 initial begin
     i0 = 1;
