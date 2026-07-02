@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 
-module mux4to1(
+module mux_4(
     input i0,
     input i1,
     input i2,
