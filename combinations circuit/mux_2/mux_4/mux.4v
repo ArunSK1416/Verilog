@@ -1,0 +1,7 @@
+//mux4:1
+module multiplex(i0,i1,i2,i3,y,s1,s2);
+input i0,i1,i2,i3;
+output y;
+input wire s1,s2;
+assign y = ((~s1&~s2&i0)|(~s1&s2&i1)|(s1&~s2&i2)|(s1&s2&i3));
+endmodule
